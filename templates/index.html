@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+
+  <form method="post" autocomplete="off">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:220px">
+        <label>Place Name</label>
+        <input type="text" name="place" placeholder="e.g., Pune, Goa, Shimla" value="{{ request.form.get('place','') }}">
+      </div>
+
+      <div style="display:flex;gap:12px;flex:1;min-width:260px">
+        <div style="flex:1">
+          <label>Latitude</label>
+          <input type="text" name="lat" placeholder="18.5204" value="{{ request.form.get('lat','') }}">
+        </div>
+        <div style="flex:1">
+          <label>Longitude</label>
+          <input type="text" name="lon" placeholder="73.8567" value="{{ request.form.get('lon','') }}">
+        </div>
+      </div>
+
+      <div style="width:140px;min-width:120px">
+        <label>Radius (km)</label>
+        <input type="number" name="radius" min="1" max="500" value="{{ request.form.get('radius',10) }}">
+      </div>
+
+      <div style="width:160px; min-width:120px; align-self:flex-end">
+        <button class="btn" type="submit">Search Nearby Spots</button>
+      </div>
+    </div>
+
+    {% if error %}
+      <p style="color:#c02525;font-weight:700;margin-top:12px">{{ error }}</p>
+    {% endif %}
+
+    <!-- inline preview when available -->
+    {% if map_html or chart_path %}
+      <div class="preview">
+        <div class="map-frame">
+          {{ map_html|safe }}
+        </div>
+        <div class="chart-frame">
+          {% if chart_path %}
+            <img src="{{ url_for('static', filename=chart_path) }}" alt="chart">
+          {% else %}
+            <div style="color:var(--muted)">No chart available.</div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- popular places (optional: pass popular_spots from Flask as a list of dicts) -->
+    <div style="margin-top:18px">
+      <h3 style="margin:0 0 8px 0;font-size:18px">Popular places</h3>
+      <div class="popular">
+        {% if popular_spots %}
+          {% for s in popular_spots %}
+            <div class="spot">
+              <h4>{{ s.name }}</h4>
+              <p>{{ s.description[:80] }}{% if s.description|length > 80 %}...{% endif %}</p>
+              <div style="margin-top:8px;color:var(--muted);font-size:13px">Visitors: {{ s.annual_visitors }}</div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <!-- graceful placeholders if not passed -->
+          <div class="spot"><h4>Goa Beach</h4><p>Famous beaches and nightlife</p><div style="margin-top:8px;color:var(--muted)">Visitors: 2,000,000</div></div>
+          <div class="spot"><h4>Taj Mahal</h4><p>Iconic monument in Agra</p><div style="margin-top:8px;color:var(--muted)">Visitors: 3,000,000</div></div>
+          <div class="spot"><h4>Jaipur Palace</h4><p>Historic forts and palaces</p><div style="margin-top:8px;color:var(--muted)">Visitors: 1,100,000</div></div>
+          <div class="spot"><h4>Kerala Backwaters</h4><p>Serene houseboats and canals</p><div style="margin-top:8px;color:var(--muted)">Visitors: 900,000</div></div>
+        {% endif %}
+      </div>
+    </div>
+
+  </form>
+</div>
+
+{% endblock %}

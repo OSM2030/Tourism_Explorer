@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Overall Top Attractions (sample dataset)</h2>
+  {% if chart_path %}
+    <img src="{{ url_for('static', filename=chart_path) }}" alt="dashboard chart" style="max-width:100%;height:auto;border-radius:6px;">
+  {% else %}
+    <p>No data to display.</p>
+  {% endif %}
+  <p style="margin-top:8px">Use the home page to search for nearby spots by name or coordinates.</p>
+</div>
+{% endblock %}

@@ -1,0 +1,3 @@
+spots.csv — Sample dataset created for academic demo. Source: aggregated sample values for demonstration.
+Images (if used) — Please add image filenames and their sources here with links and licenses.
+Geocoding via Nominatim (OpenStreetMap) — follow Nominatim usage policy for production.

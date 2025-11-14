@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Nearby tourist spots (radius: {{ radius }} km) — Found: {{ count }}</h2>
+
+  <div style="margin-bottom:12px;">
+    {% if chart_path %}
+      <img src="{{ url_for('static', filename=chart_path) }}" alt="chart" style="max-width:100%;height:auto;border-radius:6px;">
+    {% else %}
+      <p>No nearby spots found to chart.</p>
+    {% endif %}
+  </div>
+
+  <div id="map" style="height:600px;overflow:hidden;">
+    {{ map_html | safe }}
+  </div>
+  <p style="margin-top:8px;">Tip: Click markers to see details & visitor counts.</p>
+</div>
+{% endblock %}
