@@ -40,8 +40,8 @@ Each library has a role:
 
 ## How to Install & Run (macOS / Linux)  
 
-1. Clone the repository:
 ```bash
+1. Clone the repository:
 git clone https://github.com/OSM2030/tourism_web.git
 cd tourism_web
 
