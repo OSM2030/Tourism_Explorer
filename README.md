@@ -1,4 +1,4 @@
-# Tourism Explorer — Academic Mini-Project
+# Tourism_Explorer — Academic Mini-Project
 
 **GitHub:** [OSM2030](https://github.com/OSM2030)  
 ---
