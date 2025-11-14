@@ -38,4 +38,25 @@ Each library has a role:
 ---
 
 
+## How to Install & Run (macOS / Linux)  
+
+1. Clone the repository:
+```bash
+git clone https://github.com/OSM2030/tourism_web.git
+cd tourism_web
+
+2. Create a virtual environment:
+python3 -m venv venv
+source venv/bin/activate
+
+3. Install required libraries:
+pip install -r requirements.txt
+
+4. Run the web app:
+python3 app.py
+
+5. Visit in browser:
+http://127.0.0.1:5000/
+
+
 
